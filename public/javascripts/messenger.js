@@ -9,6 +9,7 @@ subscribe_key: 'demo'
 var messageContent = $('#messageContent'),
 sendMessageButton = $('#sendMessageButton'),
 yourName = $('#userName'),
+announceGoalButton = $('#announceGoalButton'),
 messageList = $('#messageList');
  
 // Handles all the messages coming in from pubnub.subscribe.
@@ -27,20 +28,20 @@ function handleMessage(message) {
  
 // Compose and send a message when the user clicks our send message button.
 sendMessageButton.click(function (event) {
-var message = messageContent.val();
+	var message = messageContent.val();
  
-if (message != '') {
-pubnub.publish({
-channel: 'chat',
-message: {
-username: yourName.val(),
-text: message
-}
-});
+	if (message != '') {
+		pubnub.publish({
+			channel: 'chat',
+			message: {
+				username: yourName.val(),
+				text: message
+			}
+		});
  
-messageContent.val("");
+		messageContent.val("");
 
-}
+	}
 });
  
 // Also send a message when the user hits the enter button in the text area.
@@ -64,6 +65,17 @@ $(document).on("click", ".playerPrediction", function(){
 		message: {
 			username: yourName.val(),
 			text: message
+		}
+	});
+});
+
+// Announce a goal was just scored!
+announceGoalButton.click(function (event) {
+	pubnub.publish({
+		channel: 'chat',
+		message: {
+			username: yourName.val(),
+			text: "GOOOOAAAAALLLLLL!!!!!!!"
 		}
 	});
 });
