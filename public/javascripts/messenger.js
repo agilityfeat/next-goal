@@ -1,8 +1,8 @@
 $(document).ready(function () {
 // Initialize the PubNub API connection.
 var pubnub = PUBNUB.init({
-publish_key: 'demo',
-subscribe_key: 'demo'
+publish_key: 'pub-c-24de4b19-9284-43ee-b600-5e7b38d31f5b',
+subscribe_key: 'sub-c-9cc28534-8892-11e3-baad-02ee2ddab7fe'
 });
  
 // Grab references for all of our elements.
