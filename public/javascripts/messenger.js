@@ -22,7 +22,7 @@ function handleMessage(message) {
 	messageList.append(messageEl);
 	messageList.listview('refresh');
  
-	$("#messageList").get(0).scrollIntoView();
+	//$("#messageList").get(0).scrollIntoView();
 
 };
  
