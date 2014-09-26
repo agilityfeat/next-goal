@@ -13,6 +13,28 @@
 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 <script src="http://cdn.pubnub.com/pubnub-3.4.4.js"></script>
 <script src="javascripts/messenger.js"></script>
+<script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js" ></script>
+<script type="text/javascript">
+  var apiKey    = "45004262";
+  var sessionId = "1_MX40NTAwNDI2Mn5-MTQxMTc0MzA2MTYzMX42djhkOENHeVliUUhBTjAvMHhGTVB6Q21-fg";
+  var token     = "T1==cGFydG5lcl9pZD00NTAwNDI2MiZzaWc9MDdkOGI3NjY2NWQyN2IxMGQxOWRkYzJlOWIzYjFiMTEyYTkxYzU0Mzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UQXdOREkyTW41LU1UUXhNVGMwTXpBMk1UWXpNWDQyZGpoa09FTkhlVmxpVVVoQlRqQXZNSGhHVFZCNlEyMS1mZyZjcmVhdGVfdGltZT0xNDExNzQzMTc0Jm5vbmNlPTAuODQ2MDE4MDQ3NjQ0MjI3NyZleHBpcmVfdGltZT0xNDE0MzM1MDI4";
+ 
+  var session = OT.initSession(apiKey, sessionId);
+ 
+  session.on("streamCreated", function(event) {
+    session.subscribe(event.stream, "mySubscriber");
+  });
+  
+  session.on("streamDestroyed", function(event) {
+    $( "#videoContainer" ).append( "<div id=\"mySubscriber\" style=\"display: table-cell;\"></div>" );
+  });
+ 
+  session.connect(token, function(error) {
+	// Replace with the replacement element ID:
+	var publisher = OT.initPublisher("myPublisher", {name: "Fan"})
+    session.publish(publisher);
+  });
+</script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -32,7 +54,12 @@
 <div data-role="header" data-position="fixed" data-tap-toggle="false" class="wc-header-bar">
 <h1>Predict the next goal!</h1>
 </div><!-- /header -->
- 
+
+<div id="videoContainer" style="display: table;">
+  <div id="myPublisher" style="display: table-cell;"></div>
+  <div id="mySubscriber" style="display: table-cell;"></div>
+</div>
+
 <div data-role="content">
 <ul data-role="listview" id="messageList">
 </ul>
