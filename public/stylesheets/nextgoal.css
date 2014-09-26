@@ -2,6 +2,10 @@
 	background: #1e5a2e;
 }
 
-.videobox {
-	float: left;
+#videoContainer {
+	display: table;
+}
+
+#myPublisher, #mySubscriber {
+	display: table-cell;
 }

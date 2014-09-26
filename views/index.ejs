@@ -26,12 +26,12 @@
   });
   
   session.on("streamDestroyed", function(event) {
-    $( "#videoContainer" ).append( "<div id=\"mySubscriber\" style=\"display: table-cell;\"></div>" );
+    $( "#videoContainer" ).append( "<div id=\"mySubscriber\"></div>" );
   });
  
   session.connect(token, function(error) {
 	// Replace with the replacement element ID:
-	var publisher = OT.initPublisher("myPublisher", {name: "Fan"})
+	var publisher = OT.initPublisher("myPublisher")
     session.publish(publisher);
   });
 </script>
@@ -55,9 +55,9 @@
 <h1>Predict the next goal!</h1>
 </div><!-- /header -->
 
-<div id="videoContainer" style="display: table;">
-  <div id="myPublisher" style="display: table-cell;"></div>
-  <div id="mySubscriber" style="display: table-cell;"></div>
+<div id="videoContainer">
+  <div id="myPublisher"></div>
+  <div id="mySubscriber"></div>
 </div>
 
 <div data-role="content">
